@@ -8,22 +8,33 @@ then
 	apt-get install -y nginx
 fi
 
-mkdir -p /data/web_static/releases/test/index.html
+mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
-ln -s -f /data/web_static/releases/test/ /data/web_static/current
+ln -sf /data/web_static/releases/test/ /data/web_static/current
 chown -R "$USER":"$USER" /data/
 echo 'Hello there!!!' > /data/web_static/releases/test/index.html
-echo "server {
-    listen 80;
-    listen [::]:80;
+printf %s "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    add_header X-Served-By $HOSTNAME;
+    root   /var/www/html;
+    index  index.html index.htm index.nginx-debian.html;
+
+    server_name _;
     
-    location / {
-        alias /data/web_static/current
+    location /hnb_static/ {
+        alias /data/web_static/current;
+	index index.html index.htm
     }
 
-    location / {
-    	proxy_pass http://graceeffiong.tech:80;
+    location /redirect_me {
+        return 301 http://graceeffiong.tech/;
     }
-}" > /etc/nginx/sites-available/hbnb
-sed -i
+
+    error_page 404 /404.html;
+    location /404 {
+      root /var/www/error;
+      internal;
+    }
+}" > /etc/nginx/sites-available/default
 service nginx restart
