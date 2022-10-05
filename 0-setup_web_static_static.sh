@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 #set up your web servers for the deployment of web_static
 
-command=var$(dpkg -l | grep -c nginx)
-if [ "$command" -eq 0 ]
-then
-	apt-get update -y
-	apt-get install -y nginx
-fi
+apt-get update -y
+apt-get install -y nginx
 
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
@@ -24,7 +20,7 @@ printf %s "server {
     
     location /hnb_static/ {
         alias /data/web_static/current;
-	index index.html index.htm
+	index index.html index.htm;
     }
 
     location /redirect_me {
