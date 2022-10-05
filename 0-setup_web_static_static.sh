@@ -24,7 +24,7 @@ printf %s "server {
     }
 
     location /redirect_me {
-        return 301 http://graceeffiong.tech/;
+        return 301 http://graceeffiong.tech;
     }
 
     error_page 404 /404.html;
