@@ -7,7 +7,7 @@ apt-get install -y nginx
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
 ln -sf /data/web_static/releases/test/ /data/web_static/current
-chown -R "$USER":"$USER" /data/
+chown -R ubuntu:ubuntu /data/
 echo 'Hello there!!!' > /data/web_static/releases/test/index.html
 printf %s "server {
     listen 80 default_server;
@@ -18,9 +18,10 @@ printf %s "server {
 
     server_name _;
     
-    location /hnb_static/ {
+    location /hnb_static {
         alias /data/web_static/current;
 	index index.html index.htm;
+	autoindex off;
     }
 
     location /redirect_me {
