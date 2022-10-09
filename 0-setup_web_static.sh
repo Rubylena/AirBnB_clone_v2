@@ -18,8 +18,8 @@ printf %s "server {
 
     server_name _;
     
-    location /hnb_static {
-        alias /data/web_static/current;
+    location /hbnb_static/ {
+        alias /data/web_static/current/;
 	index index.html index.htm;
 	autoindex off;
     }
