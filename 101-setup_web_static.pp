@@ -70,6 +70,6 @@ file { '/etc/nginx/sites-available/default':
   content => '$nginx_congf
 } ->
 
-exec { 'nginx restart':
-  path    => '/etc/init.d/'
+exec { 'service ginx restart':
+  path    => '/etc/init.d/nginx'
 }
