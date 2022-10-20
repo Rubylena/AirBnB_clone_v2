@@ -8,12 +8,12 @@ app = Flask(__name__)
 
 @app.route("/states_list", strict_slashes=False)
 def fetchStates():
-    state = storage.all("States")
-    return render_template('7-states_list.html', state=state)
+    states = storage.all("States")
+    return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
-def removeSession():
+def removeSession(exception):
     """ teardown current sql session"""
     return storage.close()
 
