@@ -1,9 +1,13 @@
+#!/usr/bin/python3
+""" import flask """
 from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route("/", strict_slashes=False)
 def hello():
+    """ app content """
     return "<p>Hello HBNB!</p>"
 
 
