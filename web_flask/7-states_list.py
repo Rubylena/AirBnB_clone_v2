@@ -15,7 +15,7 @@ def fetchStates():
 @app.teardown_appcontext
 def removeSession():
     """ teardown current sql session"""
-    return storage.close
+    return storage.close()
 
 
 if __name__ == "__main__":
