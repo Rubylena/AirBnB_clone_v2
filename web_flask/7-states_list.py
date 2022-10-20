@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 @app.route("/states_list", strict_slashes=False)
 def fetchStates():
-    states = storage.all("States")
-    return render_template('7-states_list.html', states=states)
+    state = storage.all("States")
+    return render_template('7-states_list.html', state=state)
 
 
 @app.teardown_appcontext
