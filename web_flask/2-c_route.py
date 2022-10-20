@@ -13,14 +13,15 @@ def hello():
 
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """hbnh content"""
+    """hbnb content return"""
     return "HBNB"
 
 
 @app.route("/c/<text>", strict_slashes=False)
 def addText(text):
-    """add variable function"""
-    return f'C {text.replace("_", " ")}'
+    """add variable function starting with 'C' then text"""
+    text = text.replace("_", " ")
+    return 'C {}'.format(text)
 
 
 if __name__ == "__main__":
