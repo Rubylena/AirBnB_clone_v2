@@ -14,7 +14,7 @@ def fetchStates():
 
 
 @app.route("/states/<id>", strict_slashes=False)
-def fetchStateById():
+def fetchStateById(id):
     """fetch state by id, if it exits"""
     for states in storage.all("State").values():
         if states.id == id:
